@@ -1,7 +1,7 @@
 import { type NextRequest, NextResponse } from "next/server"
 
 // Configuração do modelo Groq
-const GROQ_API_KEY = import.meta.env.VITE_GROQ_API_KEY
+const VITE_GROQ_API_KEY = import.meta.env.VITE_GROQ_API_KEY
 const GROQ_MODEL = "compound-beta-mini" // Modelo mais recente e capaz do Groq
 
 // Prompts internos para melhorar as respostas
