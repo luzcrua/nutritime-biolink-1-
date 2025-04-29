@@ -174,9 +174,28 @@ export default function ChatBot() {
         .trim()
 
       // Limitar o tamanho da resposta se não for uma pergunta técnica
-      let finalResponse = formattedResponse
-      if (formattedResponse.length > 200 && !isTechnicalQuestion(messageText)) {
-        finalResponse = formattedResponse.substring(0, 200)
+   //   let finalResponse = formattedResponse
+    //  if (formattedResponse.length > 400 && !isTechnicalQuestion(messageText)) {
+     //   finalResponse = formattedResponse.substring(0, 400)
+     // }
+
+      let finalResponse = formattedResponse;
+
+      if (formattedResponse.length > 400 && !isTechnicalQuestion(messageText)) {
+        // Corta a resposta para, no máximo, 400 caracteres
+        let truncatedResponse = formattedResponse.substring(0, 400);
+      
+        // Encontra o último ponto final dentro dos 400 caracteres
+        let lastPeriodIndex = truncatedResponse.lastIndexOf('.');
+      
+        if (lastPeriodIndex !== -1) {
+          // Se houver um ponto final, corta até ele (e inclui o ponto)
+          finalResponse = truncatedResponse.substring(0, lastPeriodIndex + 1);
+        } else {
+          // Se não houver ponto final, corta na última palavra completa
+          let lastSpaceIndex = truncatedResponse.lastIndexOf(' ');
+          finalResponse = truncatedResponse.substring(0, lastSpaceIndex) + '...';
+        }
       }
 
       // Adicionar resposta do assistente
